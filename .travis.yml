@@ -16,10 +16,10 @@ after_success:
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images to push to docker hub
-  - docker push zumrat/multi-client
-  - docker push zumrat/multi-nginx
-  - docker push zumrat/multi-server
-  - docker push zumrat/multi-worker
+  - docker push -t zumrat/multi-client
+  - docker push -t zumrat/multi-nginx
+  - docker push -t zumrat/multi-server
+  - docker push -t zumrat/multi-worker
 
 
 deploy:
@@ -34,4 +34,3 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     secure: $AWS_SECRET_KEY
-    
