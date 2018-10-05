@@ -9,17 +9,17 @@ script:
   - docker run zumrat/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t zumrat/multi-client -f ./client
-  - docker build -t zumrat/multi-nginx -f ./nginx
-  - docker build -t zumrat/multi-server -f ./server
-  - docker build -t zumrat/multi-worker -f ./worker
+  - docker build -t zumrat/multi-client ./client
+  - docker build -t zumrat/multi-nginx ./nginx
+  - docker build -t zumrat/multi-server ./server
+  - docker build -t zumrat/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images to push to docker hub
-  - docker push -t zumrat/multi-client
-  - docker push -t zumrat/multi-nginx
-  - docker push -t zumrat/multi-server
-  - docker push -t zumrat/multi-worker
+  - docker push zumrat/multi-client
+  - docker push zumrat/multi-nginx
+  - docker push zumrat/multi-server
+  - docker push zumrat/multi-worker
 
 
 deploy:
